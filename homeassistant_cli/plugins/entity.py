@@ -31,6 +31,8 @@ def listcmd(ctx: Configuration, entityfilter: str):
 
     areas = api.get_areas(ctx)
 
+    labels = api.get_labels(ctx)
+
     entities = api.get_entities(ctx)
 
     result = []  # type: List[Dict]
@@ -65,6 +67,34 @@ def listcmd(ctx: Configuration, entityfilter: str):
             ctx, result, columns=ctx.columns if ctx.columns else cols
         )
     )
+
+@cli.command('label-assign')
+@click.argument('entity_id')
+@click.argument('label')
+@pass_context
+def label_assign(ctx, entity_id, label):
+    """Assign a label to an entity."""
+    url = f"{ctx.api.url}/api/labels/assign"
+    headers = {
+        "Authorization": f"Bearer {ctx.api.token}",
+        "Content-Type": "application/json"
+    }
+    payload = {
+        "entity_id": entity_id,
+        "label": label
+    }
+    response = ctx.api.session.post(url, json=payload, headers=headers)
+    if response.status_code == 200:
+        click.echo(f"Label '{label}' assigned to entity '{entity_id}'.")
+    else:
+        click.echo(f"Failed to assign label '{label}' to entity '{entity_id}'.")
+
+# Add the new command to the entity group
+@click.group()
+def entity():
+    """Entity management commands."""
+entity.add_command(label_assign)
+
 
 
 @cli.command('assign')
