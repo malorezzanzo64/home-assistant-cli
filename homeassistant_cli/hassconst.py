@@ -6,6 +6,7 @@ without installing Home Assistant itself.
 # Home Assistant WS constants
 
 # Websocket API
+WS_TYPE_LABEL_REGISTRY_LIST = "config/label_registry/list"
 WS_TYPE_DEVICE_REGISTRY_LIST = "config/device_registry/list"
 WS_TYPE_AREA_REGISTRY_LIST = "config/area_registry/list"
 WS_TYPE_AREA_REGISTRY_CREATE = "config/area_registry/create"
