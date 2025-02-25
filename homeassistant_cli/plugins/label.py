@@ -25,13 +25,6 @@ def cli(ctx):
     """Get info and operate on labels from Home Assistant."""
     pass
 
-@cli.command('lista')
-@pass_context
-def list_labels(ctx):
-    """List all labels."""
-    response = api.call_service(ctx, 'label', 'list')
-    click.echo(response)
-
 @cli.command('list')
 @click.argument('labelfilter', default=".*", required=False)
 @pass_context
