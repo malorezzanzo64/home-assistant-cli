@@ -156,6 +156,17 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
 
 
+def get_labels(ctx: Configuration) -> List[Dict[str, Any]]:
+    """Return all labels."""
+    frame = {'type': hass.WS_TYPE_LABEL_REGISTRY_LIST}
+
+    labels = cast(Dict, wsapi(ctx, frame))[
+        'result'
+    ]  # type: List[Dict[str, Any]]
+
+    return labels
+
+
 def get_areas(ctx: Configuration) -> List[Dict[str, Any]]:
     """Return all areas."""
     frame = {'type': hass.WS_TYPE_AREA_REGISTRY_LIST}
