@@ -218,3 +218,22 @@ def areas(
         return [c for c in completions if incomplete in c[0]]
 
     return completions
+
+def labels(
+    ctx: Configuration, args: List, incomplete: str
+) -> List[Tuple[str, str]]:
+    """Labels."""
+    _init_ctx(ctx)
+    alllabels = api.get_labels(ctx)
+
+    completions = []  # type List[Tuple[str, str]]
+
+    if alllabels:
+        for label in alllabels:
+            completions.append((_quoteifneeded(label['name']), label['label_id']))
+
+        completions.sort()
+
+        return [c for c in completions if incomplete in c[0]]
+
+    return completions
