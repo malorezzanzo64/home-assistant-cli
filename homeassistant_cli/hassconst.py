@@ -7,6 +7,9 @@ without installing Home Assistant itself.
 
 # Websocket API
 WS_TYPE_LABEL_REGISTRY_LIST = "config/label_registry/list"
+WS_TYPE_LABEL_REGISTRY_CREATE = "config/label_registry/create"
+WS_TYPE_LABEL_REGISTRY_DELETE = "config/label_registry/delete"
+WS_TYPE_LABEL_REGISTRY_UPDATE = "config/label_registry/update"
 WS_TYPE_DEVICE_REGISTRY_LIST = "config/device_registry/list"
 WS_TYPE_AREA_REGISTRY_LIST = "config/area_registry/list"
 WS_TYPE_AREA_REGISTRY_CREATE = "config/area_registry/create"
